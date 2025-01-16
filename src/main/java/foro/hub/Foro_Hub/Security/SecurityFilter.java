@@ -14,6 +14,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+/**
+ * Filtro de seguridad personalizado para verificar la autenticación de usuarios mediante tokens JWT.
+ * Intercepta las solicitudes HTTP entrantes y extrae el token del encabezado "Authorization".
+ * Valida el token y autentica al usuario si es válido.
+ */
+
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
 
@@ -22,9 +28,18 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    /**
+     * Método que se ejecuta para cada solicitud HTTP.
+     *
+     * @param request Objeto HttpServletRequest que representa la solicitud HTTP.
+     * @param response Objeto HttpServletResponse que representa la respuesta HTTP.
+     * @param filterChain Cadena de filtros de seguridad a la que se debe delegar el procesamiento de la solicitud.
+     * @throws ServletException Si ocurre un error durante el procesamiento de la solicitud.
+     * @throws IOException Si ocurre un error de entrada/salida durante el procesamiento de la solicitud.
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        // Obtener el token del header
+
         var authHeader = request.getHeader("Authorization");
         if (authHeader != null) {
             var token = authHeader.replace("Bearer ", "");

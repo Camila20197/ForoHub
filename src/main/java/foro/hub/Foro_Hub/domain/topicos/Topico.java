@@ -5,6 +5,12 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * Entidad JPA que representa un tópico de discusión.
+ *
+ * La entidad `Topico` mapea una tabla llamada "topicos" en la base de datos y almacena información
+ * relacionada a un tópico de discusión.
+ */
 @Table(name = "topicos")
 @Entity(name = "Topicos")
 public class Topico {
@@ -28,6 +34,11 @@ public class Topico {
 
     public  Topico(){}
 
+    /**
+     * Constructor que inicializa el tópico a partir de un objeto `DatosTopico`.
+     *
+     * @param datosTopico Objeto que contiene los datos del tópico.
+     */
     public Topico(DatosTopico datosTopico) {
         this.estado = EstadoTopico.ABIERTO;
         this.titulo = datosTopico.titulo();
@@ -37,6 +48,7 @@ public class Topico {
         this.curso = datosTopico.curso();
     }
 
+    // Getters y Setters para los atributos de la clase
     public Long getId() {
         return id;
     }

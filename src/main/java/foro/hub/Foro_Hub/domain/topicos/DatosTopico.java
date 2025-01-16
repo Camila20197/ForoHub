@@ -2,6 +2,9 @@ package foro.hub.Foro_Hub.domain.topicos;
 
 import jakarta.validation.constraints.NotBlank;
 
+/**
+ * Clase de registro que representa los datos de un nuevo tópico.
+ */
 public record DatosTopico(
 
         @NotBlank
